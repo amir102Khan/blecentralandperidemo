@@ -1,0 +1,33 @@
+//Using the version of protobuf
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoTripMessageProtos";
+//message can be seen as a key word class in Java environment
+message EthoTripMessage {
+  //required means that a value must be set (not null). The latter one is Field_Number, not the initial value. It will be involved in the calculation of Tag when encoding.
+
+  enum TripState {
+    TRIP_OFF = 0;
+    TRIP_ON = 1;
+    TRIP_ROUTE_NOT_FOUND = 2;
+    TRIP_GETTING_ROUTE = 3;
+    TRIP_IN_PROGRESS = 4;
+    TRIP_NAV_ON = 5;
+    TRIP_NAV_COMPLETE = 6;
+    TRIP_STOPPED = 7;
+    TRIP_SERVER_SYNCING = 8;
+  }
+
+  optional TripState tripState = 1;
+
+  optional string nextStepText = 2;
+  optional string maneuverResource = 3;
+  optional string stepDistanceRemaining = 4;
+  optional string totalDistanceRemaining = 5;
+  optional string totalTimeRemaining = 6;
+  optional string currentSpeed = 7;
+}

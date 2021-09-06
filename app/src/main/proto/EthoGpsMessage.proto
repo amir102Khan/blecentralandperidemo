@@ -1,0 +1,30 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoGpsMessageProtos";
+
+message EthoGpsMessage {
+  enum GpsMessageType {
+    REQUEST_GPS_DATA = 1; //this message type will be set when helmet will request gps data from application
+    IMAGE_GPS_DATA_RESPONSE = 2;
+    VIDEO_GPS_DATA_RESPONSE = 3;
+    START_SAVING_GPS_DATA = 4;// this message type will be set when helmet will start recording video
+    STOP_SAVING_GPS_DATA = 5; // this message type will be set when helmet will stop recording video
+  }
+
+  optional GpsMessageType gpsMessageType = 1;
+  optional GpsData gpsData = 2;
+  repeated GpsData videoGpsData = 3;
+  optional string tripId = 4;
+  message GpsData {
+    optional string latitude = 2;
+    optional string longitude = 3;
+    optional string timeStamp = 4;
+    optional string speed = 5;
+  }
+
+
+}

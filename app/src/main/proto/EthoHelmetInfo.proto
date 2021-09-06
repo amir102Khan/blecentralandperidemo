@@ -1,0 +1,23 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoHelmetInfoProtos";
+
+message EthoHelmetInfo {
+  optional string osVersion = 1;
+  optional string helmetName = 2;
+  optional string helmetModelNumber = 3;
+  optional string helmetSerialNumber = 4;
+  optional string totalStorageSpace = 5;
+  optional string availableSpace = 6;
+
+  // when the application needed the helmet info then it will send requestHelmetInfo as true
+  optional HelmetInfoMessageType helmetInfoMessageType = 7;
+  enum HelmetInfoMessageType {
+    GET_HELMET_INFO = 1;
+    HELMET_INFO_RESPONSE = 2;
+  }
+}

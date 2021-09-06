@@ -1,0 +1,15 @@
+//Using the version of protobuf
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoResolutionMessageProtos";
+//message can be seen as a key word class in Java environment
+message EthoResolutionMessage {
+    //required means that a value must be set (not null). The latter one is Field_Number, not the initial value. It will be involved in the calculation of Tag when encoding.
+    optional int32 width = 1;
+    optional int32 height = 2;
+    required bool isDefault = 3;
+}

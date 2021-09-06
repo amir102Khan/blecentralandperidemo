@@ -1,0 +1,72 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoMessageProtos";
+//message can be seen as a key word class in Java environment
+import "EthoTripMessage.proto";
+import "EthoFtpServerMessage.proto";
+import "EthoHotspotMessage.proto";
+import "EthoRtspMessage.proto";
+import "EthoHelmetInfo.proto";
+import "EthoHelmetBrightnessControlMessage.proto";
+import "BatteryStatusMessage.proto";
+import "EthoNotificationMessage.proto";
+import "EthoCameraMessage.proto";
+import "EthoStateMachine.proto";
+import "EthoGpsMessage.proto";
+
+
+message EthoMessage {
+
+  optional int64 messageId = 1;
+  optional bool requiresResponse = 2;
+  optional int64 messageRequestId = 3;
+  optional int64 messageResponseId = 4;
+
+
+  enum MessageType {
+    COMMAND = 0;
+    DATA = 1;
+    RESPONSE = 2;
+  }
+  optional MessageType messageType = 5;
+
+  message Content {
+    enum MessageCategory {
+      APP_STATUS = 0;
+      HELMET_STATUS = 1;
+      NOTIFICATION = 2;
+      WIFI = 4;
+      FTP = 5;
+      RTSP = 6;
+      CAMERA = 7;
+      MEDIA_PLAYER = 8;
+      VOICE_ASSISTANT = 9;
+      BRIGHTNESS_CONTROL = 10;
+      HELMET_INFO = 11;
+      BATTERY_INFO = 12;
+      TRIP = 13;
+      GPS = 14;
+    }
+    optional MessageCategory category = 1;
+
+    optional EthoFtpServerMessage ethoFtpMessage = 2;
+    optional EthoHotspotMessage ethoHotspotMessage = 3;
+    optional EthoRtspMessage ethoRtspMessage = 4;
+    optional EthoTripMessage ethoTripMessage = 5;
+    optional EthoHelmetInfo ethoHelmetInfoMessage = 6;
+    optional EthoHelmetBrightnessControlMessage ethoHelmetBrightnessControlMessage = 7;
+    optional BatteryStatusMessage batteryStatusMessage = 8;
+    optional EthoNotificationMessage ethoNotificationMessage = 9;
+    optional EthoCameraMessage ethoCameraMessage = 10;
+    optional EthoStateMachine ethoStateMachine = 11;
+    optional EthoGpsMessage ethoGpsMessage = 12;
+
+  }
+  optional Content content = 6;
+
+
+}

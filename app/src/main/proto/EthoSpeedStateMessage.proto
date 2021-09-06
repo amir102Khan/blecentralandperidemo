@@ -1,0 +1,13 @@
+//Using the version of protobuf
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoSpeedStateMessageProtos";
+//message can be seen as a key word class in Java environment
+message EthoSpeedStateMessage {
+    //required means that a value must be set (not null). The latter one is Field_Number, not the initial value. It will be involved in the calculation of Tag when encoding.
+    required int32 speed = 1;
+}

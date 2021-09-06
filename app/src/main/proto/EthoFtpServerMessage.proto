@@ -1,0 +1,44 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoFtpServerMessageProtos";
+
+message EthoFtpServerMessage {
+  optional FTPMessageType ftpMessageType = 1;
+  optional FtpServerStatus ftpServerStatus = 2;
+  optional string username = 3;
+  optional string password = 4;
+  optional string ipAddress = 5;
+  optional string androidUrl = 6;
+  optional string iosUrl = 7;
+  optional string failureReason = 8;
+
+
+
+  enum FTPMessageType {
+    CONNECT_FTP = 0;
+    SUSPEND_FTP = 1;
+    RESUME_FTP = 2;
+    DISCONNECT_FTP = 3;
+    SWITCH_SERVER_STATUS = 4;
+    GET_FILE_DETAILS = 5;
+    FTP_CREDENTIALS = 6;
+    FTP_OFF = 7;
+    FTP_CONNECTED = 8;
+    FTP_DISCONNECTED = 9;
+    FTP_FAILED = 10;
+    FTP_SUSPENDED = 11;
+  }
+
+  enum FtpServerStatus{
+    STATE_SERVER_ON = 0;
+    STATE_SERVER_OFF = 1;
+    STATE_FAILED = 2;
+    STATE_CONNECTED = 3;
+    STATE_DISCONNECTED = 4;
+    STATE_SERVER_SUSPENDED = 5;
+  }
+}

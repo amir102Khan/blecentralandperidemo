@@ -1,0 +1,34 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoHotspotMessageProtos";
+
+message EthoHotspotMessage {
+
+
+  optional string ssid = 1;
+  optional string password = 2;
+  optional string failureReason = 3;
+
+  optional HotspotStatus hotspotStatus = 4;
+  optional HotspotMessageType hotspotMessageType = 5;
+
+  enum HotspotMessageType{
+    ENABLE_HOTSPOT = 0;
+    DISABLE_HOTSPOT = 1;
+
+    HOTSPOT_CREDENTIALS = 2;
+    HOTSPOT_STATUS_CHANGED = 3;
+  }
+  enum HotspotStatus {
+    STATE_DISABLING = 0;
+    STATE_DISABLED = 1;
+    STATE_ENABLING = 2;
+    STATE_ENABLED = 3;
+    STATE_FAILED = 4;
+
+  }
+}

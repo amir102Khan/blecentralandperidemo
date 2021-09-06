@@ -1,0 +1,39 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoNotificationMessageProtos";
+
+message EthoNotificationMessage {
+
+  enum NotificationType {
+    CALL = 1;
+    TEXT_MESSAGE = 2;
+    WHATSAPP_MESSAGE = 3;
+    MUSIC = 4;
+  }
+  optional NotificationType notificationType = 1;
+
+  optional string callingPersonName = 2;
+  enum TypeOfNumber {
+    HOME = 1;
+    OFFICE = 2;
+    ANY_OTHER = 3;
+  }
+  optional TypeOfNumber typeOfNumber = 3;
+
+  optional string whatsappMessagePersonName = 4;
+  optional string textMessagePersonName = 5;
+  optional string lastMessage = 6;
+
+  optional string musicName = 7;
+  enum MusicCurrentState {
+    PLAYING = 1;
+    PAUSED = 2;
+    STOPPED = 3;
+  }
+  optional MusicCurrentState musicCurrentState = 8;
+  optional string notificationTime = 9;
+}

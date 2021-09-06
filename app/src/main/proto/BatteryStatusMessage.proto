@@ -1,0 +1,30 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "BatteryStatusMessageProtos";
+
+message BatteryStatusMessage {
+  enum BatteryStatusMessageType {
+    REQUEST_BATTERY_STATUS = 0;
+    BATTERY_STATUS_RESPONSE = 1;
+  }
+  optional BatteryStatusMessageType batteryStatusMessageType = 1;
+
+  enum BatteryHealth {
+    GOOD = 1;
+    COLD = 2;
+    DEAD = 3;
+    OVER_HEAT = 4;
+    OVER_VOLTAGE = 5;
+    HEALTH_UNKNOWN = 6;
+    UNSPECIFIED_FAILURE = 7;
+  }
+  optional BatteryHealth batteryHealth = 2;
+
+  optional string batteryLevel = 3;
+  optional bool isBatteryCharging = 4;
+  optional string chargeTimeRemaining = 5;
+}

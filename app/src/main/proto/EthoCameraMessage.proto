@@ -1,0 +1,20 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoCameraMessageProtos";
+
+message EthoCameraMessage {
+
+  optional CameraMessageType cameraMessageType = 1;
+  enum CameraMessageType{
+    TAKE_PICTURE = 1;
+    START_RECORDING_VIDEO = 2;
+    STOP_RECORDING_VIDEO = 3;
+    STOP_REAR_CAMERA_PREVIEW = 4;
+    START_REAR_CAMERA_PREVIEW = 5;
+  }
+
+}

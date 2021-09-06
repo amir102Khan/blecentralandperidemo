@@ -1,0 +1,15 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoMessageTypeProtos";
+
+message EthoMessageType {
+
+  enum EthoMessageRequestType{
+    COMMAND = 0;
+    DATA = 1;
+  }
+}

@@ -1,0 +1,46 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoRtspMessageProtos";
+
+
+message EthoRtspMessage {
+
+  optional string fileName = 1;
+  optional string endpointConnectionUrl = 2;
+  optional string failureReason = 3;
+  optional RtspMessageType rtspMessageType = 4;
+  optional RtspStatus rtspStatus = 5;
+  optional int64 desiredProgressTime = 6; // forwarded or backward streaming time
+  optional string currentTime = 7;
+  optional string duration = 8;
+
+  enum RtspMessageType{
+    START_STREAMING = 0;
+    STOP_STREAMING = 1;
+    PAUSE_STREAMING = 2;
+    RESUME_STREAMING = 3;
+    REWIND_STREAMING = 4;
+    FORWARD_STREAMING = 5;
+
+    STREAMING_STATE_CHANGE = 6;
+    STREAMING_PROGRESS_DATA = 8;
+  }
+
+  enum RtspStatus{
+    STATE_STREAMING_STARTED = 0;
+    STATE_STREAMING_STOPPED = 1;
+    STATE_FAILED = 2;
+    STATE_CONNECTED = 3;
+    STATE_DISCONNECTED = 4;
+    STATE_STREAMING_PAUSED = 5;
+    STATE_STREAMING_RESUME = 6;
+    STATE_STREAMING_FORWARD = 7;
+    STATE_STREAMING_REWIND = 8;
+  }
+
+
+}

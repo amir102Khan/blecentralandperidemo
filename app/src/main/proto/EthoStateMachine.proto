@@ -1,0 +1,166 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoStateMachineProtos";
+
+message EthoStateMachine {
+
+  optional HelmetState helmetState = 1;
+  optional ApplicationState applicationState = 2;
+
+  message CommonState {
+    optional VoiceAssistantState voiceAssistantState = 1;
+    optional BluetoothState bluetoothState = 2;
+    optional FTPState ftpState = 3;
+    optional RTSPState rtspState = 4;
+    optional WifiState wifiState = 5;
+    optional MusicState musicState = 6;
+    optional TripState tripState = 7;
+
+    enum VoiceAssistantState {
+      RECOGNITION_ON = 0;// this means recognition is ON. Voice assistant is able to detect Command.
+      RECOGNITION_OFF = 1; // this means recognition is OFF. Voice assistant is not able to detect Command.
+      RECOGNITION_PAUSED = 2;// this means recognition is PAUSE. Voice assistant is not able to detect Command.
+      RECOGNITION_COMPLETE = 3; // this means recognition is COMPLETE. Voice assistants detect keywords successfully .
+      ACTIVATION_ERROR = 4 ;// this means in command activation we got an error. App not able to perform this command.
+      ACTIVATION_DETECTED = 5; // This means the command we detect throw voice recognition is processed and
+      ACTIVATION_RUNNING = 6; // Voice activation is under activation so wait for little
+    }
+
+    enum BluetoothState {
+      BLUETOOTH_OFF = 0; // Bluetooth is off
+      BLUETOOTH_ON = 1;// bluetooth is on
+      BLUETOOTH_CONNECTING = 2;// bluetooth is connecting
+      BLUETOOTH_DISCONNECTED = 3;// bluetooth is disconnected
+      BLUETOOTH_CONNECTED = 4; // bluetooth is connected
+      BLUETOOTH_SENDING = 5 ; // bluetooth is sending message
+      BLUETOOTH_RECEIVING = 6 ;// bluetooth is receiving message
+    }
+
+    enum FTPState {
+      FTP_SERVER_ON = 0;// ftp server on
+      FTP_SERVER_OFF = 1;// ftp server off
+      FTP_CONNECTED = 2;// ftp  server and client are connected
+      FTP_DISCONNECTED = 3;// ftp server and client are disconnected
+      FTP_CONNECTING = 4;// ftp server are client are connecting
+      FTP_ERROR = 5;// it tells that there is some in ftp
+      DOWNLOADING = 6;// ftp is downloading
+
+    }
+
+    enum RTSPState {
+      RTSP_CONNECTED = 0;// rtsp server and client are connected
+      RTSP_DISCONNECTED = 1;// rtsp server and client are disconnected
+      RTSP_CONNECTING = 2 ;// rtsp server and client are connecting
+      RTSP_STREAMING = 3; // rtsp server is streaming video
+      RTSP_PAUSED = 4;// rtsp streaming is paused
+      RTSP_RESUMED = 5;// rtsp streaming is resumed
+      RTSP_ERROR = 6;// rtsp streaming failed due to error
+    }
+
+    enum WifiState {
+      WIFI_CONNECTED = 0;// helmet wifi- helmet hotspot is connected
+      WIFI_DISCONNECTED = 1;// helmet wifi- helmet hotspot is disconnected
+      WIFI_CONNECTING = 2; // helmet wifi- helmet hotspot is connecting
+      WIFI_ERROR = 3;// helmet wifi- helmet hotspot is connection error occurred
+      WIFI_ON = 4;// wifi is on in mobile device
+      WIFI_OFF = 5;// wifi is off in mobile device
+    }
+
+    enum MusicState {
+      MUSIC_ERROR = 0;// Detect error in music player
+      MUSIC_PLAYING = 1;// app playing music right now
+      MUSIC_PAUSED = 2;// music player state is pause now.
+      CONNECTED = 3;// music player is connected with app
+      DISCONNECTED = 4;// music player is disconnected with app
+      CONNECTING = 5;// music player is connecting with the app
+    }
+
+    enum TripState {
+      TRIP_OFF = 0; // this mean there is no ongoing   trip right now
+      TRIP_ON = 1;// This Mean user is under a trip
+      TRIP_ROUTE_NOT_FOUND = 2;// this mean not able to find route for destination
+      TRIP_GETTING_ROUTE = 3;// this mean we Requested for a route and system is in process of getting route
+      TRIP_IN_PROGRESS = 4;// now trip is start
+      TRIP_NAV_ON = 5;// this mean user using navigation screen and user is under trip
+      TRIP_NAV_COMPLETE = 6;// mean trip is completed now
+      TRIP_STOPPED = 7;// mean trip status is stoped
+      TRIP_SERVER_SYNCING = 8;// trip under sync process
+    }
+  }
+
+
+  message HelmetState {
+    optional CommonState common = 1;
+    optional HotspotState hotspotState = 2;
+    optional BatteryState batteryState = 3;
+    optional FrontCameraState frontCameraState = 4;
+    optional RearCameraState rearCameraState = 5;
+    optional BrightnessState brightnessState = 6;
+
+    enum HotspotState {
+      HOTSPOT_ENABLED = 0; // hotspot is enabled
+      HOTSPOT_ENABLING = 1;// hotspot is enabling
+      HOTSPOT_DISABLED = 2; // hotspot is disabled
+      HOTSPOT_DISABLING = 3; // hotspot is disabling
+    }
+
+    enum BatteryState {
+      BATTERY_LOW = 0;// it means battery is low
+      BATTERY_HEALTH_COLD = 1;// it means battery has become cold
+      BATTERY_HEALTH_HEAT = 2;// it means battery is heated
+      BATTERY_HEALTH_GOOD = 3;// it means that battery is in good condition
+      BATTERY_HEALTH_DEAD = 4;// it means that battery is dead
+      BATTERY_HEALTH_OVER_VOLTAGE = 5; // it means that battery is over voltage
+      BATTERY_HEALTH_UNKNOWN = 6; // it means battery health is unknown
+      BATTERY_HEALTH_UNSPECIFIED = 7 ; // it means battery health is unspecified
+      CHARGING_ON = 8;// it means that battery is getting charged
+      CHARGING_OFF = 9;// it means that battery charging is off
+    }
+
+    enum FrontCameraState {
+      FRONT_CAMERA_ON = 0;// it means front camera is on
+      FRONT_CAMERA_OFF = 1;//it means front camera is off
+      FRONT_CAMERA_RECORDING = 2;// it means front camera is recording
+      FRONT_CAMERA_PROCESSING = 3;// it means front camera is processing i.e file is not being saved yet
+      FRONT_CAMERA_ERROR = 4; // it means that there is error in front camera
+    }
+
+    enum RearCameraState {
+      REAR_ON = 0;//it means rear camera is on
+      REAR_OFF = 1; // it means rear camera is off
+      REAR_PROCESSING = 2; // it means rear camera is processing i.e file is not being saved yet
+      REAR_RECORDING = 3;// it means rear camera is recording
+      REAR_CAMERA_ERROR = 4; // it means that there is error in rear camera
+    }
+
+    enum BrightnessState {
+      LOW = 0;// it means that brightness level is low i.e 20 %
+      MEDIUM = 1;// it means that brightness level is medium i.e 50 %
+      HIGH = 2;// it means that brightness level is high i.e 100 %
+    }
+  }
+
+
+  message ApplicationState {
+    optional CommonState commonState = 1;
+    optional HelmetDataSyncState helmetDataSyncState = 2;
+    optional AppState appState = 3;
+
+    enum HelmetDataSyncState {
+      SYNC_ = 0; //application is syncing with helmet database
+      ERROR = 1; // application syncing with helmet database failed
+      SYNC_COMPLETE = 2; // syncing with helmet database completed
+      SYNC_OFF = 3; // application is not syncing with helmet database
+    }
+    enum AppState {
+      BACKGROUND = 0; // application is in background state
+      FOREGROUND = 1 ; // application is in foreground state
+      TERMINATED = 2 ; // application is terminated
+      SUSPENDED = 3; // application is suspended
+    }
+  }
+}

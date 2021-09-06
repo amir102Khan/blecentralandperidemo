@@ -1,0 +1,22 @@
+syntax = "proto2";
+//Can save
+package io.etho.ethohelmetandroid;
+//Generate the package name of the class after compilation
+option java_package = "proto";
+//Generate the class name of the class after compilation
+option java_outer_classname = "EthoHelmetBrightnessControlMessageProtos";
+
+message EthoHelmetBrightnessControlMessage {
+
+  optional HelmetBrightnessLevel helmetBrightnessLevel = 1;
+
+  // if the user will give any specific brightness level in the range of 0 to 100 , then this data will be that brightness level
+  optional int32 specificBrightnessLevel = 2;
+  enum HelmetBrightnessLevel{
+    LOW = 0; // brightness level will be 20 %
+    MEDIUM = 1; // brightness level will be 50 %
+    HIGH = 2 ; // brightness level will be 100 %
+    SPECIFIC_BRIGHTNESS_LEVEL = 3 ; // brightness level will be specific in the range of 0-100 %
+  }
+
+}
